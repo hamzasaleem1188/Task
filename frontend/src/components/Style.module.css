@@ -1,0 +1,44 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-radius: 20px;
+    /* width: 400px; */
+    padding: 10px;
+    margin: 90px;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid; */
+    border-radius: 15px;
+    width: fit-content;
+}
+.listView {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+}
+.crossBtn {
+    padding-right: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.directions,.btnDiv{
+    display: flex;
+    flex-direction: row;
+
+}
+.display{
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+    margin-top: 6%;
+}
