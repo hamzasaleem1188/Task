@@ -24,7 +24,6 @@ export default function PopUpForm({ onSubmit }) {
         })
         setShow(true);
         onSubmit();
-        // window.location.reload();
 
     }
 

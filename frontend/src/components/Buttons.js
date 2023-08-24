@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import crossBtn from '../asserts/crossBtn.svg'
 export default function Buttons({ data, onDelete }) {
-    // const [name, setName] = useState(null);
     const [newData, setNewData] = useState([]);
     const handleDeleteBtn = async (_id) => {
         const res = await axios.delete(`http://localhost:4000/details/${_id}`);
@@ -17,6 +16,7 @@ export default function Buttons({ data, onDelete }) {
     }
     return (
         <>
+            <h2 className="text-center m-5">WEBHOOK URL </h2>
             <div className={classes.Container}>
                 <div className={classes.btnContainer}>
                     {data.length ?

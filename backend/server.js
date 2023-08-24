@@ -7,6 +7,7 @@ require("dotenv").config()
 const app =express();
 const webHookRoutes = require("./routes/webhook");
 const authRoutes = require("./routes/auth");
+const authMiddleware = require('./controllers/authToken');
 //Configure express app
 app.use(express.json());
 app.use(cors());
@@ -15,7 +16,7 @@ app.use(cors());
 //Database call
 connectToDb();
 app.use('/api/auth', authRoutes)
-// app.use(/*add middleware here to validate user before feting webhooks end points*/)
+app.use(authMiddleware)
 app.use('/api/webhook', webHookRoutes)
 //Routing
 app.get('/',(req,res)=>{

@@ -4,7 +4,9 @@ const authMiddleware = require("../controllers/authToken");
 routes.post("/SignUp",async(req,res,next)=>{
     
     const user=await authController.SignUpUser(req.body);
-    res.json(user);
+    if(user.status === 0) {
+        res.status(409).json(user)
+    } else res.json(user);
     next();
 })
 

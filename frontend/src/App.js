@@ -4,6 +4,7 @@ import Buttons from "./components/Buttons";
 import axios from "axios";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [data, setData] = useState(null);
@@ -28,9 +29,10 @@ useEffect(() => {
   return (
 
     <div>
-      {/* <SignUp/> */}
-      <Login/>
-      {/* <h2 className="text-center m-5">WEBHOOK URL </h2> */}
+      <SignUp/>
+      {/* <Login/> */}
+      {/* <Dashboard /> */}
+      {/*  */}
       {/* {data ? <Buttons data= {data} onDelete = {handleDelete}/> : ""} */}
 
       {/* <PopUpForm onSubmit = {handleSubmit}/> */}
