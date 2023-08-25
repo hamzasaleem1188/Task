@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 export default function PopUpForm({ onSubmit }) {
@@ -14,7 +14,14 @@ export default function PopUpForm({ onSubmit }) {
     const createData = async (e) => {
         // e.preventDefault();
         //create data with post request
-        const res = await axios.post("http://localhost:4000/details", createForm);
+        const token = localStorage.getItem('token');
+        const res = await axios.post("http://localhost:4000/api/webhook/create", createForm, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
         //update state
         //clear form state
         setCreateForm({
@@ -34,6 +41,7 @@ export default function PopUpForm({ onSubmit }) {
             [name]: value,
         })
     }
+
 
     return (
         <div className='container '>

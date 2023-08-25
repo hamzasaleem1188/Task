@@ -17,6 +17,7 @@ app.use(cors());
 connectToDb();
 app.use('/api/auth', authRoutes)
 app.use(authMiddleware)
+app.use('/api/user', authRoutes)
 app.use('/api/webhook', webHookRoutes)
 //Routing
 app.get('/',(req,res)=>{

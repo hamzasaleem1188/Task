@@ -1,15 +1,15 @@
 const Data=require("../models/webhook");
 const userModal=require("../models/UserModal");
 //Fetch all records
-const fetchData = async (req, res) => {
+const fetchData = async (user) => {
     //find the notes
-    const data = await Data.find();
+    const data = await Data.find({userId: user.id});
     //respond with them
-    res.json({ data: data })
+    return data;
 };
 
 //Create record
-const createData = async (body) => {
+const createData = async (body, user) => {
     //Get data that is sent by request body
     try {
         const webURL = body.webURL;
@@ -20,16 +20,22 @@ const createData = async (body) => {
             webURL,
             content,
             btnName,
+            userId: user.id
         });
         return data;
-        //respond with the new data
-        // res.json({ data: data });
     } catch (error) {
         return error;
         // res.json({error})
     }
 };
-
+const updateClickCounts = async (params) => {
+    const webhook = await Data.findById(params.id);
+    if(webhook) {
+        webhook.clickCount += 1;
+        webhook.save();
+        return true; 
+    } else return false;
+}
 const deleteButton=async(req,res)=>{
     const noteId = req.params.id;
     console.log(req.params);
@@ -44,5 +50,6 @@ const deleteButton=async(req,res)=>{
 module.exports={
     fetchData,
     createData,
-    deleteButton
+    deleteButton,
+    updateClickCounts
 }

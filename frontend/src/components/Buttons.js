@@ -5,14 +5,31 @@ import crossBtn from '../asserts/crossBtn.svg'
 export default function Buttons({ data, onDelete }) {
     const [newData, setNewData] = useState([]);
     const handleDeleteBtn = async (_id) => {
-        const res = await axios.delete(`http://localhost:4000/details/${_id}`);
-        const Data = [...newData].filter((name) => {
-            return name._id !== _id;
-        })
-        setNewData(Data);
+        const token = localStorage.getItem("token");
+        const res = await axios.delete(`http://localhost:4000/api/webhook/delete/${_id}`,{
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+        // const Data = [...newData].filter((name) => {
+        //     return name._id !== _id;
+        // })
+        // setNewData(Data);
+        console.log('before refresh:::');
         onDelete();
         // console.log(res.data);
 
+    }
+    const handleClickCount = async (id) => {
+        const token = localStorage.getItem("token");
+        const res = await axios.post(`http://localhost:4000/api/webhook/update-click`,{id}, {
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          });
+          console.log('res::::',res);
     }
     return (
         <>
@@ -24,7 +41,7 @@ export default function Buttons({ data, onDelete }) {
                             {data && data.map((dta) => {
                                 return (
                                     <div className={classes.directions} key={dta?._id}>
-                                        <button onClick={() => { handleDeleteBtn(dta._id) }}
+                                        <button onClick={() => { handleClickCount(dta._id) }}
                                             className='btn btn-dark my-3' key={dta?._id}>{dta?.btnName} </button>
                                         <div className={classes.crossBtn} onClick={() => { handleDeleteBtn(dta._id) }}>
                                             <img src={crossBtn} />
@@ -39,20 +56,5 @@ export default function Buttons({ data, onDelete }) {
                 </div>
             </div>
         </>
-
-        // <div className={classes.Container}>
-        //     <div>
-        //         {data.length ?
-        //             <div>
-        //                 {data && data.map((dta) => {
-        //                     return (
-        //                         <button onClick={() => { handleDeleteBtn(dta._id) }} className='btn btn-dark mx-3 my-3' key={dta?._id}>{dta?.btnName} </button>
-        //                     )
-
-        //                 })}
-        //             </div> : ""
-        //         }
-        //     </div>
-        // </div>
     )
 }

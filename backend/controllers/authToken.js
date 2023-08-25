@@ -2,7 +2,7 @@
 const jwt=require('jsonwebtoken');
 const authMiddleware=(req,res,next)=>{
     const authHeader=req.header('Authorization');
-    if(!authHeader||!authHeader.startWith('Bearer ')){
+    if(!authHeader){
         return res.status(401).json({error:'Unauthorized'});
 
     }

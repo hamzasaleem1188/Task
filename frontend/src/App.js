@@ -11,31 +11,10 @@ function App() {
   const [isRefresh, setRefresh] = useState(false);
   // const [isShowForm, setShowForm] = useState(false);
   // const [visible,setVisible]=useState(false);
-//   const fetchNames = async () => {
-//     //fetch the notes 
-//     const res = await axios.get("http://localhost:4000/details");
-//     setData(res?.data?.data)
-// }
-const handleSubmit = () => {
-  setRefresh(true);
-}
-const handleDelete = () => {
-  setRefresh(true);
-}
-//use Effect
-useEffect(() => {
-    // fetchNames();
-}, [isRefresh]);
   return (
 
     <div>
-      <SignUp/>
-      {/* <Login/> */}
-      {/* <Dashboard /> */}
-      {/*  */}
-      {/* {data ? <Buttons data= {data} onDelete = {handleDelete}/> : ""} */}
-
-      {/* <PopUpForm onSubmit = {handleSubmit}/> */}
+      <Login/>
     </div>
 
 
